@@ -61,7 +61,7 @@ def callback(ch, method, properties, body):
 
 # Adds an email to the queue, to be sent
 def enqueue_email_task(body):
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq'))
     channel = connection.channel()
 
     channel.queue_declare(queue='email_queue')

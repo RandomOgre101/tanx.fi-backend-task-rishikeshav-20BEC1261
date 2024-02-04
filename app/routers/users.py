@@ -1,8 +1,8 @@
 from fastapi import Response, status, HTTPException, Depends, APIRouter
-from ..database import models
-from ..schemas import schemas
-from ..controllers import controllers
-from ..database.database import get_db
+from database import models
+from schemas import schemas
+from controllers import controllers
+from database.database import get_db
 from sqlalchemy.orm import Session
 
 

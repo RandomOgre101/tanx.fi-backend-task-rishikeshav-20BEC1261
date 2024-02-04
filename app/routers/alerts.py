@@ -1,17 +1,17 @@
 from fastapi import APIRouter, Depends, status, HTTPException, BackgroundTasks
 from sqlalchemy.orm import Session
-from ..database import models
-from ..database.database import get_db
-from ..schemas import schemas
-from ..controllers import JWTauth
-from ..webSocket import ws
+from database import models
+from database.database import get_db
+from schemas import schemas
+from controllers import JWTauth
+from webSocket import ws
 from typing import Optional
 import redis
 import pickle
 
 
 # Initialize redis
-rd = redis.Redis(host="localhost", port=6379, db=0)
+rd = redis.Redis(host="redis", port=6379, db=0)
 
 # Set APIRouter class with URL prefix and swagger docs tag
 router = APIRouter(

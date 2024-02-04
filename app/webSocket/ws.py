@@ -1,5 +1,5 @@
 import websocket, json, threading
-from ..controllers.rabbitmq import enqueue_email_task
+from controllers.rabbitmq import enqueue_email_task
 
 
 # OOP Based solution to run threads and continuously check prices in real time with the Binance websocket
