@@ -81,7 +81,7 @@ GET route to start the process of running Binance's websocket
 
 
 ## POST /login
-Route to authenticate login and get JWT access_token
+Route to authenticate login and get JWT access_token, accepted schema is
 ```
 {
   "email": str,
@@ -90,7 +90,7 @@ Route to authenticate login and get JWT access_token
 ```
 
 ## POST /users/
-Route to create a user
+Route to create a user, accepted schema is
 ```
 {
   "email": str,
