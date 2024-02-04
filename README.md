@@ -1,8 +1,11 @@
 # TanX.fi Backend Engineer Task
 
 **Name:** Rishikeshav Ravichandran
+
 **Reg No:** 20BEC1261
+
 **Personal email:** rishi.r1804@gmail.com
+
 **College email:** rishikeshav.ravi2020@vitstudent.ac.in
 
 ## Techstack:
