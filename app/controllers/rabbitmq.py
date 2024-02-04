@@ -2,8 +2,6 @@ import pika
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
-from email.utils import formatdate
 import json
 from dotenv import load_dotenv
 import os
@@ -14,7 +12,7 @@ SMTP_USER = os.environ.get("GMAIL_SMTP_EMAIL")
 SMTP_PWD = os.environ.get("GMAIL_SMTP_PWD")
 SMTP_PORT = os.environ.get("GMAIL_SMTP_PORT")
 
-
+# Send the email using Gmail SMTP
 def send_email(body):
 
     to_address = body.get('to_address')
@@ -40,20 +38,18 @@ def send_email(body):
 
     server.quit()
 
+# RabbitMQ Trigger function
 def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
     
     try:
-        # Decode JSON message
         decoded_body = json.loads(body.decode('utf-8'))
         
-        # Extract email-related information from the task body
         to_address = decoded_body.get('to_address')
         subject = decoded_body.get('subject')
         message = decoded_body.get('message')
         attachment_path = decoded_body.get('attachment_path')
 
-        # Send the email
         send_email(to_address, subject, message, attachment_path)
     
     except json.JSONDecodeError as e:
@@ -63,7 +59,7 @@ def callback(ch, method, properties, body):
         print(f"Error sending email: {e}")
 
 
-
+# Adds an email to the queue, to be sent
 def enqueue_email_task(body):
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
     channel = connection.channel()

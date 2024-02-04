@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import os
 from dotenv import load_dotenv
-# from contextlib import contextmanager
+
 
 load_dotenv()
 
@@ -13,7 +13,7 @@ DATABASE_HOSTNAME = os.environ.get("DATABASE_HOSTNAME")
 DATABASE_NAME = os.environ.get("DATABASE_NAME")
 DATABASE_PORT = os.environ.get("DATABASE_PORT")
 
-
+# Connecting to Postgres database with SQLAlchemy
 SQLALCHEMY_DATABASE_URL = f'postgresql://postgres:password@localhost:5432/tanx-task'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)

@@ -1,18 +1,20 @@
 from fastapi import APIRouter, Depends, status, HTTPException
 from sqlalchemy.orm import Session
-from database.database import get_db
-from database import models
-from controllers import controllers, JWTauth
-from schemas import schemas
-from database import models
+from ..database.database import get_db
+from ..database import models
+from ..controllers import controllers, JWTauth
+from ..schemas import schemas
+from ..database import models
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 
 
+# Set APIRouter class with URL prefix and swagger docs tag
 router = APIRouter(
     tags = ['Authentication'],
 )
 
 
+# POST route to verify login, create JWT and return it
 @router.post('/login', response_model=schemas.Token)
 def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     

@@ -1,7 +1,8 @@
 import websocket, json, threading
-from controllers.rabbitmq import enqueue_email_task
+from ..controllers.rabbitmq import enqueue_email_task
 
 
+# OOP Based solution to run threads and continuously check prices in real time with the Binance websocket
 class PriceChecker:
     def __init__(self, data, email):
         self.data = data
@@ -26,6 +27,7 @@ class PriceChecker:
     def on_close(self, ws):
         print("Closed Connection")
 
+    # Function so as to run multithreading
     def run_websocket(self, url):
         ws = websocket.WebSocketApp(url=url, on_message=self.on_message, on_close=self.on_close)
         ws.run_forever()
@@ -36,6 +38,7 @@ def run_threads(data, email):
 
     symbols = [tup[0] for tup in data]
 
+    # Creating socket URLs using the crypto names that are passed in through data
     sockets = [f"wss://stream.binance.com:9443/ws/{symbol+'usdt'}@aggTrade" for symbol in symbols]
 
     threads = [threading.Thread(target=price_checker.run_websocket, args=(socket,)) for socket in sockets]
