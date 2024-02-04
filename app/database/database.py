@@ -14,7 +14,7 @@ DATABASE_NAME = os.environ.get("DATABASE_NAME")
 DATABASE_PORT = os.environ.get("DATABASE_PORT")
 
 # Connecting to Postgres database with SQLAlchemy
-SQLALCHEMY_DATABASE_URL = f'postgresql://postgres:password@localhost:5432/tanx-task'
+SQLALCHEMY_DATABASE_URL = f'postgresql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOSTNAME}:{DATABASE_PORT}/{DATABASE_NAME}'
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
