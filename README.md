@@ -1,5 +1,10 @@
 # TanX.fi Backend Engineer Task
 
+**Name:** Rishikeshav Ravichandran
+**Reg No:** 20BEC1261
+**Personal email:** rishi.r1804@gmail.com
+**College email:** rishikeshav.ravi2020@vitstudent.ac.in
+
 ## Techstack:
 
 - Python (FastAPI)
@@ -49,4 +54,26 @@ docker compose build --no-cache
 
 
 # Endpoints:
-## POST
+## POST /alerts/create
+Route to create an alert, accepted schema is 
+
+## POST /alerts/delete/{id}
+Route to change status of an alert to 'deleted'
+
+## GET /alerts
+Route to get multiple alerts of a user
+query parameters are: status
+
+## GET alerts/start
+GET route to start the process of running Binance's websocket
+
+
+## POST /login
+Route to authenticate login and get JWT access_token
+
+## POST /users/
+Route to create a user
+  
+
+# Solution to send alerts:
+Used a class based solution called PriceChecker wherein multithreading is used to run multiple websockets at the same time then send an email through Gmail SMTP, incorporated with RabbitMQ for message queuing if the given price is reached.
