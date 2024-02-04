@@ -59,13 +59,22 @@ docker compose build --no-cache
 # Endpoints:
 ## POST /alerts/create
 Route to create an alert, accepted schema is 
+```
+{
+  "status": str,
+  "crypto_name": str,
+  "price_to_alert": int
+}
+```
 
 ## POST /alerts/delete/{id}
 Route to change status of an alert to 'deleted'
 
+
 ## GET /alerts
 Route to get multiple alerts of a user
 query parameters are: status
+
 
 ## GET alerts/start
 GET route to start the process of running Binance's websocket
@@ -73,9 +82,21 @@ GET route to start the process of running Binance's websocket
 
 ## POST /login
 Route to authenticate login and get JWT access_token
+```
+{
+  "email": str,
+  "password": str
+}
+```
 
 ## POST /users/
 Route to create a user
+```
+{
+  "email": str,
+  "password": str
+}
+```
   
 
 # Solution to send alerts:
